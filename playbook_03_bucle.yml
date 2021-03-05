@@ -1,0 +1,9 @@
+---
+- name: Postfix and dovecot are running
+  service:
+      name: "{{ item }}"
+      state: started
+        loop:
+          - postfix
+          - dovecot
+...

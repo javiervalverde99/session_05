@@ -10,6 +10,6 @@
 
     - name: "Ping ssh"
       command: ansible nodos -m ping
-      when: estado ssh is change
+      when: estado_ssh is change
       delegate_to: localhost
 ...

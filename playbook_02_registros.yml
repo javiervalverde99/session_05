@@ -8,6 +8,6 @@
         state: present
       register: creacion_pepe
     - name: "El UID de pepe es:"
-      debug
-        msg: "El uid de poepe es {{ creacion pepe.uid}}"
+      debug:
+        msg: "El uid de pepe es {{ creacion_pepe.uid}}"
 ...
