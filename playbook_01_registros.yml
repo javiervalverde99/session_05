@@ -13,3 +13,19 @@
       when: estado_ssh is change
       delegate_to: localhost
 ...
+
+
+---
+- name: "Demostracion de registros"
+  hosts: nodos
+  tasks:
+    - name: "Reinico del servicio ssh"
+      service:
+        name: sshd
+        state: restarted
+      register: estado_ssh
+
+    - name: "Ping a ssh"
+      command: ansible nodos -m ping
+      when: estado_ssh is change
+      delegate_to: localhost

@@ -1,9 +1,45 @@
 ---
-- name: Postfix and dovecot are running
-  service:
-      name: "{{ item }}"
-      state: started
-        loop:
-          - postfix
-          - dovecot
+- name: "Demostración de bubles"
+  hosts: nodos
+  tasks:
+    - name "Creación de usuario con Bucle Simple"
+      user:
+        name:
+          name: "{{ item }}"
+          state: present
+      loop:
+        - usuario01
+        - usuario02
+        - usuario03
+
+    - name: "Creación de usuarios con Bucles complejos"
+      user:
+        name: {{ item.nombre }}
+        state: present
+        home: {{ item.directorio }}
+        uid: {{ item.identificador }}
+      loop
+        - nombre: oracle1
+          directorio: /home/oracle1
+          identificador: 444
+        - nombre: oracle2
+          directorio: /home/oracle2
+          identificador: 445
+        - nombre: oracle3
+          directorio: /home/oracle3
+          identificador: 446
+
+    - name: "Creación de usuarios con lista de variavles"
+      user:
+        name: {{ item.nombre }}
+        state: present
+       loop {{ usuarios}} 
+       
+    - name: "Creación de usuarios con array de diccionarios"
+      user:
+        name: {{ item.key }}
+        uid: {{ item.value.identificador }}
+        comment: {{ item.value.telefono }}
+       loop: {{ mas_usuarios }}
+
 ...
