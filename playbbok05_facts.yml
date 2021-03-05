@@ -1,0 +1,21 @@
+---
+- name: "Creacion de usuarios"
+  hosts: master
+  tasks:
+  - name: "Prints various Ansible facts"
+      var: ansible_facts
+  - name: "Imprimir varios facts"
+    debug:
+      msg: >
+        El nodo {{ ansible_facts['hostname'] }} tiene configurada la IP {{ ansible_facts['default_ipv4']['address'] }}
+        y su dirección mac es {{ ansible_facts['default_ipv4']['macaddress']  }}
+    file:
+    path: /tmp/datos_nodo.txt
+    state: touch
+    mode: 0655
+  - name: "Insercción de datos"
+    lineinfile:
+      path: /tmp/datos_nodo.txt
+      line: "El nodo con el nombre {{ ansible_facts['hostname'] }} tiene la versión de kernel {{ ansible_facts['kernel'] }}"
+      create: yes 
+...
