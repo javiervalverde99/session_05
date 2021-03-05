@@ -1,0 +1,10 @@
+[nodos]
+172.17.228.103 ansible_ssh_user=root ansible_ssh_pass=Curso2021
+172.17.228.106 ansible_ssh_user=root ansible_ssh_pass=Curso2021
+
+[master]
+172.17.228.101 ansible_ssh_user=root ansible_ssh_pass=Curso2021
+[uclm:children]
+nodos
+master
+
